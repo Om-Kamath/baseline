@@ -1,0 +1,10 @@
+// Code signing for the Baseline app target.
+//
+// To run Baseline on your own iPhone, copy Signing.local.xcconfig.example to
+// Signing.local.xcconfig (git ignores it) and set your Apple Developer Team ID
+// and a bundle identifier that's unique to you.
+
+DEVELOPMENT_TEAM =
+PRODUCT_BUNDLE_IDENTIFIER = com.example.baseline
+
+#include? "Signing.local.xcconfig"

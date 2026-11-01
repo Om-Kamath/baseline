@@ -22,6 +22,11 @@ Every formula and weight is shown in the app. Nothing is a black box.
 - **Research-informed scoring:** 7-day rolling averages, log-transformed HRV, a "normal zone" that ignores day-to-day noise, and overnight HRV taken from deep sleep when available (see [Research](#research)).
 - **Transparent breakdown:** see the points each metric earned, today's value vs. your usual, and why.
 - **Body Charge timeline:** an hourly chart with today's workouts marked, along with each workout's cost.
+- **Detailed insights for every card:**
+  - **Sleep:** stage timeline, Deep/Core/REM split, efficiency, awakenings, bedtime consistency, sleep debt, and overnight vitals (heart rate, breathing rate, blood oxygen, wrist temperature)
+  - **HRV:** 30-night trend with your normal range, night-to-night variation, and what HRV and resting heart rate suggest together
+  - **Body Charge:** peak and low, drained vs. recharged, heart rate zones, and a projection to your usual bedtime
+  - **Recovery:** daily guidance, 30-day history, yesterday's activity vs. your usual, and VO₂ max trend
 - **Liquid Glass design:** tiles expand fluidly into detail cards. Pull down to refresh.
 - **Private by design:** all data stays on your device. Baseline only reads from Apple Health, never writes to it, and has no servers, accounts, or analytics.
 
@@ -59,13 +64,19 @@ Your calm daytime level is the 20th percentile of your awake heart rate over the
 ## Building
 
 1. Clone the repository and open `baseline.xcodeproj` in Xcode.
-2. Select the **baseline** target → **Signing & Capabilities**:
-   - Choose your own **Team**.
-   - Change the **Bundle Identifier** to something unique, such as `com.yourname.baseline`.
+2. Set up signing: copy `Config/Signing.local.xcconfig.example` to `Config/Signing.local.xcconfig` and fill in:
+   - `DEVELOPMENT_TEAM`: your Apple Developer Team ID (Xcode → Settings → Accounts)
+   - `PRODUCT_BUNDLE_IDENTIFIER`: something unique to you, such as `com.yourname.baseline`
+
+   Git ignores this file, so your personal settings stay local.
 3. Select your iPhone as the run destination and press **⌘R**.
 4. In the app, tap **Get Started** and allow access to your Health data.
 
 HealthKit has no sample data in the Simulator, so run on a real device to see meaningful scores.
+
+## Contributing
+
+Contributions are welcome! Please read the [contributing guide](CONTRIBUTING.md) and the [code of conduct](CODE_OF_CONDUCT.md) first. To report a security or privacy problem, see the [security policy](SECURITY.md) rather than opening a public issue.
 
 ## Research
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSHealthShareUsageDescription</key>
-	<string>This app reads your health data (HRV, heart rate, sleep, workouts, etc.) to compute your daily recovery score and body battery level.</string>
+	<string>This app reads your health data (HRV, heart rate, sleep, workouts, etc.) to compute your daily Recovery score and Body Charge level.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>This app does not write health data, but permission is requested for future features.</string>
 	<key>UIBackgroundModes</key>

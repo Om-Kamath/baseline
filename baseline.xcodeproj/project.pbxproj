@@ -50,6 +50,7 @@
 		9B49DE9F3091A33C00A4B475 /* HealthRecoveryViewsComponentsRecoveryRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecoveryViewsComponentsRecoveryRingView.swift; sourceTree = "<group>"; };
 		9B49DEA13091A34400A4B475 /* HealthRecoveryViewsComponentsBatteryRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecoveryViewsComponentsBatteryRingView.swift; sourceTree = "<group>"; };
 		9B49DEA33091A36100A4B475 /* HealthRecoveryViewsRecoveryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecoveryViewsRecoveryDetailView.swift; sourceTree = "<group>"; };
+		C0FF1C0000000000000000A1 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -94,6 +95,7 @@
 				9B49DE9F3091A33C00A4B475 /* HealthRecoveryViewsComponentsRecoveryRingView.swift */,
 				9B49DEA13091A34400A4B475 /* HealthRecoveryViewsComponentsBatteryRingView.swift */,
 				9B49DEA33091A36100A4B475 /* HealthRecoveryViewsRecoveryDetailView.swift */,
+				C0FF1C0000000000000000A1 /* Signing.xcconfig */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -330,19 +332,19 @@
 		};
 		000000000000000111000000 /* Debug configuration for PBXNativeTarget "baseline" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0FF1C0000000000000000A1 /* Signing.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = baseline/baseline.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QSP5Y65D5S;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Baseline;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your health data (HRV, heart rate, sleep, workouts, etc.) to compute your daily recovery score and body battery level.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your health data (HRV, heart rate, sleep, workouts, etc.) to compute your daily Recovery score and Body Charge level.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app does not write health data, but permission is requested for future features.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -357,36 +359,35 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.omkamath.healthrecovery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		000000000000000112000000 /* Release configuration for PBXNativeTarget "baseline" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0FF1C0000000000000000A1 /* Signing.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = baseline/baseline.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QSP5Y65D5S;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Baseline;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your health data (HRV, heart rate, sleep, workouts, etc.) to compute your daily recovery score and body battery level.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your health data (HRV, heart rate, sleep, workouts, etc.) to compute your daily Recovery score and Body Charge level.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app does not write health data, but permission is requested for future features.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -401,18 +402,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.omkamath.healthrecovery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

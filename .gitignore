@@ -21,3 +21,6 @@ Package.resolved
 
 # Local agent/editor settings
 .claude/
+
+# Personal signing settings (see Config/Signing.xcconfig)
+Config/Signing.local.xcconfig

@@ -1,0 +1,47 @@
+name: Bug report
+description: Something isn't working as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please don't include personal health data you aren't comfortable sharing publicly.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app
+        2. Tap the Sleep tile
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: ios
+    attributes:
+      label: iOS version
+      placeholder: "e.g. iOS 27.0.1"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: iPhone and Apple Watch models
+      placeholder: "e.g. iPhone 17 Pro, Apple Watch Series 9"
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or version
+      description: The commit you built from (run `git rev-parse --short HEAD`)
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or recordings
+      description: Optional, but very helpful for UI issues

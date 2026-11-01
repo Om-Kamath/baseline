@@ -1,0 +1,21 @@
+name: Feature request
+description: Suggest an idea or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe what you're trying to do and why it's hard today.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How do you imagine it working?
+  - type: textarea
+    id: research
+    attributes:
+      label: Research or references
+      description: For scoring changes, link any published research that supports the idea.
