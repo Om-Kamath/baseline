@@ -25,9 +25,6 @@
 		9B49DEA03091A33C00A4B475 /* HealthRecoveryViewsComponentsRecoveryRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B49DE9F3091A33C00A4B475 /* HealthRecoveryViewsComponentsRecoveryRingView.swift */; };
 		9B49DEA23091A34400A4B475 /* HealthRecoveryViewsComponentsBatteryRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B49DEA13091A34400A4B475 /* HealthRecoveryViewsComponentsBatteryRingView.swift */; };
 		9B49DEA43091A36100A4B475 /* HealthRecoveryViewsRecoveryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B49DEA33091A36100A4B475 /* HealthRecoveryViewsRecoveryDetailView.swift */; };
-		9B49DEA63091A39F00A4B475 /* IMPLEMENTATION.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B49DEA53091A39F00A4B475 /* IMPLEMENTATION.md */; };
-		9B49DEA83091A3CF00A4B475 /* ARCHITECTURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B49DEA73091A3CF00A4B475 /* ARCHITECTURE.md */; };
-		9B49DEAA3091A41100A4B475 /* FILE_MANIFEST.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B49DEA93091A41100A4B475 /* FILE_MANIFEST.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,9 +50,6 @@
 		9B49DE9F3091A33C00A4B475 /* HealthRecoveryViewsComponentsRecoveryRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecoveryViewsComponentsRecoveryRingView.swift; sourceTree = "<group>"; };
 		9B49DEA13091A34400A4B475 /* HealthRecoveryViewsComponentsBatteryRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecoveryViewsComponentsBatteryRingView.swift; sourceTree = "<group>"; };
 		9B49DEA33091A36100A4B475 /* HealthRecoveryViewsRecoveryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecoveryViewsRecoveryDetailView.swift; sourceTree = "<group>"; };
-		9B49DEA53091A39F00A4B475 /* IMPLEMENTATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = IMPLEMENTATION.md; sourceTree = "<group>"; };
-		9B49DEA73091A3CF00A4B475 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
-		9B49DEA93091A41100A4B475 /* FILE_MANIFEST.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FILE_MANIFEST.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -100,9 +94,6 @@
 				9B49DE9F3091A33C00A4B475 /* HealthRecoveryViewsComponentsRecoveryRingView.swift */,
 				9B49DEA13091A34400A4B475 /* HealthRecoveryViewsComponentsBatteryRingView.swift */,
 				9B49DEA33091A36100A4B475 /* HealthRecoveryViewsRecoveryDetailView.swift */,
-				9B49DEA53091A39F00A4B475 /* IMPLEMENTATION.md */,
-				9B49DEA73091A3CF00A4B475 /* ARCHITECTURE.md */,
-				9B49DEA93091A41100A4B475 /* FILE_MANIFEST.md */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -174,10 +165,7 @@
 		000000000000000140000000 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				9B49DEA63091A39F00A4B475 /* IMPLEMENTATION.md in Resources */,
 				9B49DE9030919F6A00A4B475 /* README.md in Resources */,
-				9B49DEAA3091A41100A4B475 /* FILE_MANIFEST.md in Resources */,
-				9B49DEA83091A3CF00A4B475 /* ARCHITECTURE.md in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
