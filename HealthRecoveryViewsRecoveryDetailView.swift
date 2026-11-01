@@ -57,7 +57,7 @@ private let metricInfos: [MetricInfo] = [
                 String(format: "%.1f br/min", $0)
             },
             MetricPart(zKey: "Wrist Temp", baselineKey: MetricType.wristTemp, label: "Wrist Temperature") {
-                String(format: "%+.2f °C", $0)
+                String(format: "%.2f °C", $0)
             }
         ]
     )
@@ -86,7 +86,14 @@ struct RecoveryDetailView: View {
     @State private var todayWorkouts: [WorkoutSample] = []
     @State private var showBatteryInfo = false
 
+    // Extra detail for each card (loaded only for the card being shown)
+    @State private var sleepInsights: SleepInsights?
+    @State private var hrvInsights: HRVInsights?
+    @State private var chargeInputs: ChargeInputs?
+    @State private var recoveryExtras: RecoveryExtras?
+
     @Query private var baselines: [BaselineData]
+    @Query private var recentScores: [RecoveryScore]
     @Query private var todaySnapshots: [BodyBatterySnapshot]
     @Query private var latestSnapshots: [BodyBatterySnapshot]
 
@@ -108,6 +115,12 @@ struct RecoveryDetailView: View {
         )
         latest.fetchLimit = 1
         _latestSnapshots = Query(latest)
+
+        let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -29, to: startOfDay) ?? startOfDay
+        _recentScores = Query(
+            filter: #Predicate<RecoveryScore> { $0.date >= thirtyDaysAgo },
+            sort: \.date
+        )
     }
 
     var body: some View {
@@ -127,6 +140,7 @@ struct RecoveryDetailView: View {
         .task {
             await loadTodayScore()
             await loadTodayWorkouts()
+            await loadInsights()
         }
         .sheet(isPresented: $showBatteryInfo) {
             batteryInfoSheet
@@ -146,6 +160,12 @@ struct RecoveryDetailView: View {
                         batterySection(recovery: score.score)
                     }
 
+                    RecoveryInsightsSection(
+                        score: score.score,
+                        history: recentScores.map { DatedValue(date: $0.date, value: $0.score) },
+                        extras: recoveryExtras
+                    )
+
                     // Per-metric contributions
                     VStack(alignment: .leading, spacing: 12) {
                         sectionHeader(
@@ -162,11 +182,33 @@ struct RecoveryDetailView: View {
 
                 case .battery:
                     batterySection(recovery: score.score)
+                    if let chargeInputs {
+                        ChargeInsightsSection(
+                            insights: makeChargeInsights(
+                                snapshots: todaySnapshots.map { DatedValue(date: $0.timestamp, value: $0.level) },
+                                inputs: chargeInputs
+                            )
+                        )
+                    }
 
                 case .sleep:
+                    if let sleepInsights {
+                        SleepInsightsSection(
+                            insights: sleepInsights,
+                            usualSleepHours: usualSleepHours,
+                            usualWristTemperature: baselines.first { $0.metricType == MetricType.wristTemp && $0.sampleCount > 0 }?.mean
+                        )
+                    }
                     metricCards(for: metricInfos.filter { $0.name == "Sleep" }, score: score)
 
                 case .hrv:
+                    if let hrvInsights {
+                        HRVInsightsSection(
+                            insights: hrvInsights,
+                            hrvZ: score.metricZScores["HRV"],
+                            restingHRZ: score.metricZScores["Resting HR"]
+                        )
+                    }
                     metricCards(for: metricInfos.filter { $0.name == "HRV" }, score: score)
                 }
             } else {
@@ -755,6 +797,63 @@ struct RecoveryDetailView: View {
         )
 
         todayScore = await scorer.getTodayScore()
+    }
+
+    private var usualSleepHours: Double? {
+        baselines.first { $0.metricType == MetricType.sleep && $0.sampleCount > 0 }?.mean
+    }
+
+    /// Loads the extra Health data for the card being shown.
+    private func loadInsights() async {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let health = healthKitManager
+
+        switch focus {
+        case .sleep:
+            let sleep = (try? await health.fetchSleep(days: 8)) ?? []
+            sleepInsights = makeSleepInsights(
+                sleep: sleep,
+                heartRate: (try? await health.fetchHeartRate(days: 2)) ?? [],
+                respiratory: (try? await health.fetchRespiratoryRate(days: 2)) ?? [],
+                oxygen: (try? await health.fetchBloodOxygen(days: 2)) ?? [],
+                temperature: (try? await health.fetchWristTemperature(days: 3)) ?? [],
+                usualSleepHours: usualSleepHours,
+                night: today
+            )
+
+        case .hrv:
+            hrvInsights = makeHRVInsights(
+                hrv: (try? await health.fetchHRV(days: 31)) ?? [],
+                sleep: (try? await health.fetchSleep(days: 31)) ?? [],
+                night: today
+            )
+
+        case .battery:
+            let sleep = (try? await health.fetchSleep(days: 8)) ?? []
+            let energy = (try? await health.fetchActiveEnergy(days: 1)) ?? []
+            let exercise = (try? await health.fetchExerciseTime(days: 1)) ?? []
+            let timing = makeSleepInsights(
+                sleep: sleep, heartRate: [], respiratory: [], oxygen: [], temperature: [],
+                usualSleepHours: nil, night: today
+            )
+            chargeInputs = ChargeInputs(
+                heartRate: (try? await health.fetchHeartRate(days: 1)) ?? [],
+                asleep: sleep.asleepIntervalsByNight(joiningGap: 30 * 60).values
+                    .flatMap { $0 }
+                    .map { DateInterval(start: $0.start, end: $0.end) },
+                activeEnergy: energy.isEmpty ? nil : energy.filter { $0.date >= today }.reduce(0) { $0 + $1.value },
+                exerciseMinutes: exercise.isEmpty ? nil : exercise.filter { $0.date >= today }.reduce(0) { $0 + $1.value },
+                usualBedtimeOffset: timing.usualBedtimeOffset
+            )
+
+        case .recovery:
+            recoveryExtras = makeRecoveryExtras(
+                energy: (try? await health.fetchActiveEnergy(days: 8)) ?? [],
+                exercise: (try? await health.fetchExerciseTime(days: 8)) ?? [],
+                vo2Max: (try? await health.fetchVO2Max(days: 90)) ?? []
+            )
+        }
     }
 
     private func loadTodayWorkouts() async {

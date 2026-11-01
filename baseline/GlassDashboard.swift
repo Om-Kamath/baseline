@@ -314,6 +314,8 @@ struct ExpandedTileCard<Detail: View>: View {
             }
             .scrollIndicators(.hidden)
             .scrollBounceBehavior(.basedOnSize)
+            // Content fades softly as it scrolls under the pinned header
+            .scrollEdgeEffectStyle(.soft, for: [.top, .bottom])
         }
         .clipShape(.rect(cornerRadius: expandedCornerRadius))
         .glassEffect(.regular, in: .rect(cornerRadius: expandedCornerRadius))
